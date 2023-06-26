@@ -1,10 +1,3 @@
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from datetime import datetime
-from matplotlib import pylab
-from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
     
 def _modify_features(data):
@@ -66,19 +59,3 @@ def prepare_data(training_data, new_data):
     copy_data[min_max_list] = min_max_scaler.transform(copy_data[min_max_list])
 
     return copy_data
-
-
-def main():
-    filename = 'virus_data.csv'
-    random_state = 2 + 12
-
-    dataset = pd.read_csv(filename)
-    train_df, test_df = train_test_split(dataset, test_size=0.2, train_size=0.8, random_state=random_state)
-    train_df_prepared = prepare_data(train_df, train_df)
-    test_df_prepared = prepare_data(train_df, test_df)
-
-    test_df_prepared.to_csv('train_prepared.csv')
-    test_df_prepared.to_csv('test_prepared.csv')
-
-if __name__ == "__main__":
-    main()
